@@ -1,31 +1,35 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import vertoAiImage from '../images/projects/VertoAi.png';
+import currencyConverterImage from '../images/projects/Currency Converter Web App.png';
+import studyHubImage from '../images/projects/Online Study Resource Hub.png';
 
 const Projects = () => {
   const projects = [
     {
-      title: 'Decentralized Medication Reminder',
-      description: 'Blockchain-based app for tracking medicine adherence. Features include smart contract integration, user authentication, and medication scheduling.',
-      image: '/projects/med-reminder.png',
-      technologies: ['React', 'Solidity', 'Web3.js', 'Node.js'],
-      github: 'https://github.com/yourusername/med-reminder',
-      live: 'https://med-reminder-demo.com',
+      title: 'Verto AI',
+      description: 'Ai Chatbot for students to ask questions regarding Lovely Professional University',
+      image: vertoAiImage,
+      technologies: ['Chatbase', 'HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/harshilsetty/Verto-Ai',
+      live: 'https://harshilsetty.github.io/Verto-Ai/',
     },
     {
-      title: 'AI Image Recognition App',
-      description: 'A machine learning application that uses computer vision to identify and classify objects in images. Built with Python and TensorFlow.',
-      image: '/projects/ai-vision.png',
-      technologies: ['Python', 'TensorFlow', 'OpenCV', 'Flask'],
-      github: 'https://github.com/yourusername/ai-vision',
-      live: 'https://ai-vision-demo.com',
+      title: 'Currency Converter Web App',
+      description: 'A modern, aesthetic and responsive currency converter using live exchange rates via ExchangeRate API.',
+      image: currencyConverterImage,
+      technologies: ['HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/harshilsetty/currency-converter-webapp',
+      live: 'https://harshilsetty.github.io/currency-converter-webapp/',
     },
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce platform with user authentication, product management, and payment integration.',
-      image: '/projects/ecommerce.png',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
-      github: 'https://github.com/yourusername/ecommerce',
-      live: 'https://ecommerce-demo.com',
+      title: 'Online Study Resource Hub',
+      description: 'Website offering a diverse range of study materials to video tutorials, all designed to help students excel in their studies',
+      image: studyHubImage,
+      technologies: ['HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/harshilsetty/Online-Study-Resource-Hub',
+      live: 'https://harshilsetty.github.io/Online-Study-Resource-Hub/',
     },
   ];
 
@@ -51,7 +55,7 @@ const Projects = () => {
                 <div className="relative h-48">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} Project`}
                     className="w-full h-full object-cover"
                   />
                 </div>

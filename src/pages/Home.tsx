@@ -1,5 +1,7 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import profileImage from '../images/MAIN/Harshil.webp';
 
 const Home = () => {
   return (
@@ -13,7 +15,7 @@ const Home = () => {
         >
           <div className="w-48 h-48 rounded-full overflow-hidden mb-8 border-4 border-secondary">
             <img
-              src="/profile-placeholder.jpg"
+              src={profileImage}
               alt="Harshil Somisetty"
               className="w-full h-full object-cover"
             />
