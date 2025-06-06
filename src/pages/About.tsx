@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, useScroll, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaPython, FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaDatabase, FaDownload } from 'react-icons/fa';
 import { SiC, SiLeetcode, SiHackerrank } from 'react-icons/si';
 
