@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, useScroll, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 // Import images with correct paths
@@ -10,12 +10,6 @@ import studyHubImage from '../images/projects/Online Study Resource Hub.png';
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const { scrollYProgress } = useScroll();
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-
-  // Parallax effects
-  const y1 = useTransform(smoothProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(smoothProgress, [0, 1], [0, -50]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {

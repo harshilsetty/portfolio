@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import profileImage from '../images/MAIN/Harshil.webp';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollYProgress } = useScroll();
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const [imageError, setImageError] = useState(false);
 
   // Parallax effects
-  const y1 = useTransform(smoothProgress, [0, 1], [0, -100]);
   const y2 = useTransform(smoothProgress, [0, 1], [0, -50]);
 
   useEffect(() => {
@@ -212,7 +211,13 @@ const Home = () => {
               className="w-full h-full object-cover"
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.3 }}
+              onError={() => setImageError(true)}
             />
+            {imageError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-800 text-white">
+                Image failed to load
+              </div>
+            )}
             <motion.div
               className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
               initial={{ opacity: 0 }}

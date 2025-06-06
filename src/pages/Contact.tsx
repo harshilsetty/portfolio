@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, useScroll } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
@@ -10,11 +10,6 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollYProgress } = useScroll();
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-
-  // Parallax effects
-  const y1 = useTransform(smoothProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(smoothProgress, [0, 1], [0, -50]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {

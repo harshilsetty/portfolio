@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import { FaPython, FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaDatabase, FaDownload, FaCode, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import { SiMongodb, SiMysql, SiC, SiLeetcode, SiHackerrank } from 'react-icons/si';
+import { useState, useEffect } from 'react';
+import { motion, useScroll, AnimatePresence } from 'framer-motion';
+import { FaPython, FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaDatabase, FaDownload } from 'react-icons/fa';
+import { SiC, SiLeetcode, SiHackerrank } from 'react-icons/si';
 
 const About = () => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const { scrollYProgress } = useScroll();
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-
-  // Parallax effects
-  const y1 = useTransform(smoothProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(smoothProgress, [0, 1], [0, -50]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -57,11 +51,6 @@ const About = () => {
     }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   const skills = [
     { name: 'Python', icon: <FaPython className="w-8 h-8" />, level: 85 },
     { name: 'HTML', icon: <FaHtml5 className="w-8 h-8" />, level: 90 },
@@ -92,26 +81,31 @@ const About = () => {
       name: 'CISCO Introduction to Data Science',
       issuer: 'Cisco Network Academy',
       date: '2024',
+      url: 'https://www.credly.com/badges/50a7d22c-2d7d-4123-9050-0a5462b9d7d0'
     },
     {
       name: 'CISCO Introduction to Modern AI',
       issuer: 'Cisco Network Academy',
       date: '2025',
+      url: 'https://www.credly.com/badges/3d62ea2a-76bc-4304-8c4c-40f97fed2c6d'
     },
     {
       name: 'Getting Started with Data',
       issuer: 'IBM',
       date: '2025',
+      url: 'https://www.credly.com/badges/6c7a860c-fdea-4468-bd3e-096c2b2cc89a'
     },
     {
       name: 'Python Basic',
       issuer: 'HackerRank',
       date: '2024',
+      url: 'https://www.hackerrank.com/certificates/c314926ea389'
     },
     {
       name: 'SQL Basic',
       issuer: 'HackerRank',
       date: '2025',
+      url: 'https://www.hackerrank.com/certificates/8c1938779cdd'
     },
   ];
 
@@ -127,7 +121,7 @@ const About = () => {
       date: '2024',
     },
     {
-      title: '30+ day streak',
+      title: '50+ day streak',
       organization: 'LeetCode & HackerRank',
       date: '2024',
     },
@@ -420,12 +414,15 @@ const About = () => {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {certifications.map((cert, index) => (
-              <motion.div
+              <motion.a
                 key={cert.name}
+                href={cert.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 + 0.8, duration: 0.5 }}
-                className="bg-[#C7A6E1]/5 p-4 rounded-lg relative group"
+                className="bg-[#C7A6E1]/5 p-6 rounded-lg relative group cursor-pointer"
                 whileHover={{ 
                   scale: 1.02,
                   transition: { duration: 0.2 }
@@ -441,8 +438,14 @@ const About = () => {
                   <h3 className="text-[#C7A6E1] font-semibold group-hover:text-[#00FFFF] transition-colors duration-300">{cert.name}</h3>
                   <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">{cert.issuer}</p>
                   <p className="text-[#C7A6E1]/80 text-sm group-hover:text-[#00FFFF]/80 transition-colors duration-300">{cert.date}</p>
+                  <div className="mt-2 text-[#C7A6E1]/60 group-hover:text-[#00FFFF]/60 transition-colors duration-300 text-sm flex items-center">
+                    <span>View Certificate</span>
+                    <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 
@@ -480,6 +483,149 @@ const About = () => {
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          <motion.h2 
+            className="text-2xl font-bold text-[#C7A6E1] mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            Education
+          </motion.h2>
+          <div className="space-y-6 mb-12">
+            <motion.a
+              href="https://www.lpu.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="bg-[#C7A6E1]/5 p-6 rounded-lg relative group cursor-pointer block"
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-[#00FFFF]/10 rounded-lg"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-[#C7A6E1] group-hover:text-[#00FFFF] transition-colors duration-300">Lovely Professional University</h3>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">Bachelor of Technology in Computer Science Engineering</p>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">2024 - 2028</p>
+                <div className="mt-2 text-[#C7A6E1]/60 group-hover:text-[#00FFFF]/60 transition-colors duration-300 text-sm flex items-center">
+                  <span>Visit Website</span>
+                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.a>
+
+            <motion.a
+              href="https://www.dbhpscentral.org/latindex"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.45, duration: 0.5 }}
+              className="bg-[#C7A6E1]/5 p-6 rounded-lg relative group cursor-pointer block"
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-[#00FFFF]/10 rounded-lg"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-[#C7A6E1] group-hover:text-[#00FFFF] transition-colors duration-300">Dakshina Bharat Hindi Prachar Sabha</h3>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">Bachelor of Arts (Equivalent)</p>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">February 2014 - February 2019</p>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">Chennai, Tamil Nadu</p>
+                <div className="mt-2 text-[#C7A6E1]/60 group-hover:text-[#00FFFF]/60 transition-colors duration-300 text-sm flex items-center">
+                  <span>Visit Website</span>
+                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.a>
+
+            <motion.a
+              href="https://www.narayanagroup.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="bg-[#C7A6E1]/5 p-6 rounded-lg relative group cursor-pointer block"
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-[#00FFFF]/10 rounded-lg"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-[#C7A6E1] group-hover:text-[#00FFFF] transition-colors duration-300">Narayana Junior College</h3>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">Intermediate Education (MPC)</p>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">2021 - 2023</p>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">Nellore, Andhra Pradesh</p>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">Percentage: 87%</p>
+                <div className="mt-2 text-[#C7A6E1]/60 group-hover:text-[#00FFFF]/60 transition-colors duration-300 text-sm flex items-center">
+                  <span>Visit Website</span>
+                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.a>
+
+            <motion.a
+              href="https://www.narayanagroup.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              className="bg-[#C7A6E1]/5 p-6 rounded-lg relative group cursor-pointer block"
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-[#00FFFF]/10 rounded-lg"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-[#C7A6E1] group-hover:text-[#00FFFF] transition-colors duration-300">Narayana School</h3>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">Secondary School Certificate (SSC)</p>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">2020 - 2021</p>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">Nellore, Andhra Pradesh</p>
+                <p className="text-[#C7A6E1]/80 group-hover:text-[#00FFFF]/80 transition-colors duration-300">Percentage: 97%</p>
+                <div className="mt-2 text-[#C7A6E1]/60 group-hover:text-[#00FFFF]/60 transition-colors duration-300 text-sm flex items-center">
+                  <span>Visit Website</span>
+                  <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.a>
           </div>
         </motion.div>
       </div>

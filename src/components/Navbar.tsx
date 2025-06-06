@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
@@ -125,7 +125,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link
+                  <NavLink
                     to={item.path}
                     onClick={() => setIsOpen(false)}
                     className={({ isActive }) =>
@@ -135,7 +135,7 @@ const Navbar = () => {
                     }
                   >
                     {item.name}
-                  </Link>
+                  </NavLink>
                 </motion.div>
               ))}
             </div>
