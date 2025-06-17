@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +14,11 @@ const Footer = () => {
       name: 'LinkedIn',
       icon: <FaLinkedin className="w-6 h-6" />,
       url: 'https://linkedin.com/in/harshil-somisetty',
+    },
+    {
+      name: 'X',
+      icon: <FaXTwitter className="w-6 h-6" />,
+      url: 'https://x.com/Harshilsetty',
     },
   ];
 
