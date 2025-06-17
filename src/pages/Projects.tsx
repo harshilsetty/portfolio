@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
@@ -6,49 +6,15 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import vertoAiImage from '../images/projects/VertoAi.png';
 import currencyConverterImage from '../images/projects/Currency Converter Web App.png';
 import studyHubImage from '../images/projects/Online Study Resource Hub.png';
+import internetSusDevImage from '../images/projects/image.png';
 
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
-  // Generate random positions for particles
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 4 + 1,
-    duration: Math.random() * 20 + 10
-  }));
-
-  // Generate animated lines
-  const lines = Array.from({ length: 15 }, (_, i) => ({
-    id: i,
-    startX: Math.random() * 100,
-    startY: Math.random() * 100,
-    length: Math.random() * 150 + 50,
-    angle: Math.random() * 360,
-    duration: Math.random() * 15 + 10
-  }));
 
   const projects = [
     {
       title: 'Verto AI',
-      description: 'Ai Chatbot for students to ask questions regarding Lovely Professional University',
+      description: 'Ai Chatbot for students to ask questions regarding Lovely Professional University replied by chatbase API',
       image: vertoAiImage,
       technologies: ['Chatbase', 'HTML', 'CSS', 'JavaScript'],
       github: 'https://github.com/harshilsetty/Verto-Ai',
@@ -70,139 +36,19 @@ const Projects = () => {
       github: 'https://github.com/harshilsetty/Online-Study-Resource-Hub',
       live: 'https://harshilsetty.github.io/Online-Study-Resource-Hub/',
     },
+    {
+      title: 'Internet for Sustainable Development',
+      description: 'A comprehensive website addressing internet accessibility challenges and sustainable development solutions',
+      image: internetSusDevImage,
+      technologies: ['HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/harshilsetty/Internet-for-Sustainable-Development',
+      live: 'https://harshilsetty.github.io/Internet-for-Sustainable-Development/',
+    },
   ];
 
   return (
-    <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Mesh gradient background */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(circle at 0% 0%, rgba(199, 166, 225, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 100% 0%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 100% 100%, rgba(199, 166, 225, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 0% 100%, rgba(0, 255, 255, 0.08) 0%, transparent 50%)
-          `,
-          opacity: 0.4,
-        }}
-        animate={{
-          backgroundPosition: ['0% 0%', '100% 100%'],
-          opacity: [0.4, 0.3, 0.4],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-
-      {/* Animated gradient orbs */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle at center, rgba(199, 166, 225, 0.08) 0%, transparent 70%)',
-        }}
-        animate={{
-          scale: [1, 1.3, 1],
-          x: [0, 70, 0],
-          y: [0, -40, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          repeatType: "reverse"
-        }}
-      />
-
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle at center, rgba(0, 255, 255, 0.08) 0%, transparent 70%)',
-        }}
-        animate={{
-          scale: [1.3, 1, 1.3],
-          x: [0, -70, 0],
-          y: [0, 40, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          repeatType: "reverse"
-        }}
-      />
-
-      {/* Animated lines */}
-      {lines.map((line) => (
-        <motion.div
-          key={`line-${line.id}`}
-          className="absolute pointer-events-none"
-          style={{
-            left: `${line.startX}%`,
-            top: `${line.startY}%`,
-            width: `${line.length}px`,
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(199, 166, 225, 0.15), transparent)',
-            transform: `rotate(${line.angle}deg)`,
-            transformOrigin: 'left center',
-          }}
-          animate={{
-            opacity: [0, 0.4, 0],
-            scaleX: [0, 1, 0],
-          }}
-          transition={{
-            duration: line.duration,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
-
-      {/* Floating particles */}
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-[#C7A6E1] pointer-events-none"
-          style={{
-            width: particle.size,
-            height: particle.size,
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            opacity: 0.25,
-          }}
-          animate={{
-            y: [0, -150, 0],
-            x: [0, Math.random() * 70 - 35, 0],
-            opacity: [0.25, 0.08, 0.25],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
-
-      {/* Mouse follower effect */}
-      <motion.div
-        className="fixed w-96 h-96 rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle at center, var(--color-secondary-rgb) 0%, transparent 70%)',
-          opacity: 0.08,
-          x: mousePosition.x - 192,
-          y: mousePosition.y - 192,
-        }}
-        animate={{
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          repeatType: "reverse"
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto relative z-10">
+    <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -218,7 +64,7 @@ const Projects = () => {
             <div className="absolute bottom-[-1rem] left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-[#00FFFF]/70 rounded-full"></div>
           </motion.h1>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
@@ -247,14 +93,14 @@ const Projects = () => {
                     className="block"
                   >
                     <motion.div
-                      className="relative h-48 overflow-hidden"
+                      className="relative h-56 sm:h-64 md:h-72 overflow-hidden rounded-t-lg"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.3 }}
                     >
                       <motion.img
                         src={project.image}
                         alt={`${project.title} Project`}
-                        className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-all duration-300 brightness-110"
+                        className="w-full h-full object-cover object-center opacity-90 hover:opacity-100 transition-all duration-300"
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                       />
@@ -303,7 +149,7 @@ const Projects = () => {
                       ))}
                     </motion.div>
 
-                    <div className="flex space-x-4">
+                    <div className="flex gap-4">
                       <a
                         href={project.github}
                         target="_blank"
